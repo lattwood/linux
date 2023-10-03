@@ -350,6 +350,12 @@ static void sfp_fixup_ignore_tx_fault(struct sfp *sfp)
 	sfp->tx_fault_ignore = true;
 }
 
+static void sfp_fixup_nokia(struct sfp *sfp)
+{
+	sfp_fixup_long_startup(sfp);
+	sfp_fixup_ignore_tx_fault(sfp);
+}
+
 // For 10GBASE-T short-reach modules
 static void sfp_fixup_10gbaset_30m(struct sfp *sfp)
 {
@@ -447,7 +453,7 @@ static const struct sfp_quirk sfp_quirks[] = {
 	// Alcatel Lucent G-010S-A can operate at 2500base-X, but report 3.2GBd
 	// NRZ in their EEPROM
 	SFP_QUIRK("ALCATELLUCENT", "3FE46541AA", sfp_quirk_2500basex,
-		  sfp_fixup_long_startup),
+		  sfp_fixup_nokia),
 
 	// Fiberstore SFP-10G-T doesn't identify as copper, and uses the
 	// Rollball protocol to talk to the PHY.
