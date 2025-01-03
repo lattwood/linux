@@ -364,6 +364,7 @@ static void sfp_fixup_nokia(struct sfp *sfp)
 {
 	sfp_fixup_long_startup(sfp);
 	sfp_fixup_ignore_los(sfp);
+	sfp_fixup_ignore_tx_fault(sfp);
 }
 
 // For 10GBASE-T short-reach modules
